@@ -1,0 +1,144 @@
+[gd_scene load_steps=17 format=3 uid="uid://bd3d38tfsv1ut"]
+
+[ext_resource type="Texture2D" uid="uid://enx7n5103tcr" path="res://src/modelos/escenarios/texturas/PNG/Dark/texture_09.png" id="1_ckwx7"]
+[ext_resource type="Texture2D" uid="uid://bjphobc18xoao" path="res://src/modelos/escenarios/texturas/PNG/Orange/texture_09.png" id="2_3p760"]
+[ext_resource type="PackedScene" uid="uid://n75d15c8fcl6" path="res://src/modelos/escenarios/asd/taza y cepillo 1_2.glb" id="3_627ne"]
+[ext_resource type="PackedScene" uid="uid://tdu2x2lq0yh2" path="res://src/scenes/player.tscn" id="3_qi4un"]
+[ext_resource type="Script" path="res://src/scripts/CameraController.cs" id="5_3lfy5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnb70"]
+albedo_texture = ExtResource("1_ckwx7")
+uv1_scale = Vector3(30, 20, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w3wpi"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0p4bk"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnrfb"]
+albedo_texture = ExtResource("2_3p760")
+uv1_scale = Vector3(15, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yhqnm"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yvfgc"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7koh6"]
+albedo_texture = ExtResource("2_3p760")
+uv1_scale = Vector3(15, 15, 15)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1snda"]
+
+[sub_resource type="Sky" id="Sky_ayfc5"]
+sky_material = SubResource("ProceduralSkyMaterial_1snda")
+
+[sub_resource type="Environment" id="Environment_3yqw2"]
+background_mode = 2
+sky = SubResource("Sky_ayfc5")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iji1r"]
+radius = 0.2
+height = 0.5
+
+[node name="Main" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125135, 0.154528, 0.0906922)
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_vnb70")
+mesh = SubResource("BoxMesh_w3wpi")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_0p4bk")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.5, 6.4059)
+material_override = SubResource("StandardMaterial3D_pnrfb")
+mesh = SubResource("BoxMesh_yhqnm")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D2"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_yvfgc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0.5, 3.21042)
+material_override = SubResource("StandardMaterial3D_7koh6")
+mesh = SubResource("BoxMesh_yhqnm")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D3"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_yvfgc")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 5, 0, 1.24761, 4.1539)
+material_override = SubResource("StandardMaterial3D_7koh6")
+mesh = SubResource("BoxMesh_yhqnm")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D4"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D4/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_yvfgc")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Level"]
+transform = Transform3D(10, 0, 0, 0, 0.483322, 1.2806, 0, -0.12806, 4.83322, 0.0458047, 0.286084, -1.73195)
+material_override = SubResource("StandardMaterial3D_7koh6")
+mesh = SubResource("BoxMesh_yhqnm")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/MeshInstance3D5"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/MeshInstance3D5/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_yvfgc")
+
+[node name="taza y cepillo 1_2" parent="Level" instance=ExtResource("3_627ne")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 8.65526, 1.49012e-08, -8.54922)
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("3_qi4un")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -5.4527)
+Speed = 35.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3yqw2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.852977, 0.521948, 0, -0.521948, -0.852977, 0, 3.46893, 0)
+
+[node name="CameraController" type="Node3D" parent="." groups=["CameraController"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+script = ExtResource("5_3lfy5")
+SensitiveHorizontal = 0.005
+SensitiveVertical = 0.005
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0.157333)
+collision_mask = 2
+shape = SubResource("CapsuleShape3D_iji1r")
+spring_length = 2.5
+
+[node name="Camera3D" type="Camera3D" parent="CameraController/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0814989, 2.74395)
+current = true
+
+[node name="LookAt" type="Node3D" parent="CameraController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59656, -1.18445)
