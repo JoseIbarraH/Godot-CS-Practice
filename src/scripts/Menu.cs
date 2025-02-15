@@ -12,7 +12,7 @@ public partial class Menu : Control
 
     public void _on_play_button_pressed()
     {
-        GetTree().ChangeSceneToFile("res://src/scenes/Main.tscn");
+        GetTree().ChangeSceneToFile("res://src/scenes/loading_screen.tscn");
     }
 
     public void _on_exit_button_pressed()
